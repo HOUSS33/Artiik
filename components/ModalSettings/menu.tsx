@@ -10,11 +10,6 @@ export const menu = [
         icon: "bell",
     },
     {
-        id: 2,
-        name: "Speech",
-        icon: "voice",
-    },
-    {
         id: 3,
         name: "Theme",
         icon: "document",

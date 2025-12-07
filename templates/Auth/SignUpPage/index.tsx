@@ -26,22 +26,6 @@ const SignUpPage = () => {
             }
         >
             <div className="">
-                <Button
-                    className="gap-4.5 w-full !h-12 !rounded-xl !text-label-md text-sub-600"
-                    isStroke
-                >
-                    <Image
-                        className="w-5 opacity-100"
-                        src="/images/google.svg"
-                        width={20}
-                        height={20}
-                        alt="Google"
-                    />
-                    Continue with Google
-                </Button>
-                <div className="flex items-center gap-3.5 my-6 text-center text-label-md text-soft-400 before:grow before:h-0.25 before:bg-stroke-soft-200 after:grow after:h-0.25 after:bg-stroke-soft-200 max-md:my-3">
-                    Or
-                </div>
                 <div className="flex flex-col gap-4.5">
                     <Field
                         placeholder="Enter full name"
@@ -71,14 +55,6 @@ const SignUpPage = () => {
                     >
                         Create account
                     </Button>
-                </div>
-                <div className="mt-5 text-center">
-                    <Link
-                        className="text-label-sm text-blue-500 transition-colors hover:text-blue-700"
-                        href="/auth/forgot-password"
-                    >
-                        Forgotten Password?
-                    </Link>
                 </div>
             </div>
         </LayoutLogin>

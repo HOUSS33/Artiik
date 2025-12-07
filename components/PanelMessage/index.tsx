@@ -16,7 +16,7 @@ type ButtonProps = {
 
 const Button = ({ className, icon, onClick }: ButtonProps) => {
     return (
-        <button className={`group text-0 ${className || ""}`} onClick={onClick}>
+        <button className={` group text-0 ${className || ""}`} onClick={onClick}>
             <Icon
                 className="fill-icon-soft-400 transition-colors group-hover:fill-blue-500"
                 name={icon}
@@ -42,18 +42,12 @@ const PanelMessage = ({}) => {
                     />
                 </div>
                 <div className="flex items-center gap-2.5">
-                    <Speed />
-                    <div className="w-0.25 h-5 bg-stroke-soft-200"></div>
+                    
                     <Menu />
-                    <Button icon="link" onClick={() => {}} />
-                    <Search />
+                    <div className="w-0.25 h-5 bg-stroke-soft-200"></div>
+                    <Button icon="link" onClick={() => {}} className="mr-auto"/>
+
                     <Button icon="image" onClick={() => {}} />
-                    <Link className="group text-0" href="/research">
-                        <Icon
-                            className="fill-icon-soft-400 transition-colors group-hover:fill-blue-500"
-                            name="voice"
-                        />
-                    </Link>
                     <div className="w-0.25 h-5 bg-stroke-soft-200"></div>
                     <button className="group text-0" onClick={() => {}}>
                         <Image
@@ -64,6 +58,7 @@ const PanelMessage = ({}) => {
                             alt="Sent"
                         />
                     </button>
+                    
                 </div>
             </div>
         </div>

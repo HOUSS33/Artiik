@@ -45,83 +45,38 @@ const Sidebar = ({ visible, onClose, onClickNewChat }: Props) => {
                             />
                         </button>
                     </div>
-                    <Link
-                        className="group relative flex items-center shrink-0 gap-2 h-10 px-3 rounded-xl text-label-sm transition-colors hover:text-blue-500 not-last:mb-2 dark:shadow-[0_0_0.1875rem_0_rgba(255,255,255,0.16)]"
-                        href="/"
-                        onClick={onClickNewChat}
-                    >
-                        <Icon
-                            className="fill-strong-950 transition-colors group-hover:fill-blue-500"
-                            name="chat"
-                        />
-                        Chat With AI
-                    </Link>
+
+
+                    <NavLink href="/" title="Chat With AI" icon="chat"  onClick={onClickNewChat}/>
+
                     <div className="mb-auto">
                         <div className="mb-2 text-label-xs text-soft-400">
                             Today
                         </div>
-                        <Link
-                            className="flex items-center gap-2 h-10 mb-2 px-3 rounded-xl bg-weak-50 dark:shadow-[0_0_0.1875rem_0_rgba(255,255,255,0.16)]"
-                            href="/write-copy"
-                        >
+                        <Link className="flex items-center gap-2 h-10 mb-2 px-3 rounded-xl bg-weak-50 dark:shadow-[0_0_0.1875rem_0_rgba(255,255,255,0.16)]" href="/write-copy">
                             <Icon className="fill-strong-950" name="document" />
-                            <div className="text-label-sm">
-                                mental health problems
-                            </div>
+                            <div className="text-label-sm"> mental health problems</div>
                         </Link>
                         <Folders />
-                        <NavLink
-                            href="/documents"
-                            title="Documents"
-                            icon="document"
-                        />
-                        <Button
-                            title="Shared With Me"
-                            icon="share"
-                            onClick={() => setOpenModalShare(true)}
-                        />
-                        <NavLink
-                            href="/templates"
-                            title="Templates"
-                            icon="template"
-                        />
-                        <NavLink
-                            href="/history"
-                            title="History"
-                            icon="history"
-                        />
+                        <NavLink href="/documents" title="Documents" icon="document"/>
+                        <NavLink href="/history" title="History" icon="history"/>
                     </div>
-                    <Upgrade />
+
                     <div className="mt-7 max-md:mt-4">
-                        <Button
-                            title="Feedback"
-                            icon="comment"
-                            onClick={() => {}}
-                        />
-                        <Button
-                            title="Invite People"
-                            icon="add-team"
-                            onClick={() => setOpenModalInvite(true)}
-                        />
-                        <Button
-                            title="Settings"
-                            icon="settings"
-                            onClick={() => setOpen(true)}
-                        />
+                        <Button title="Shared With Me" icon="share" onClick={() => setOpenModalShare(true)}/>
+                        <Button title="Invite People" icon="add-team" onClick={() => setOpenModalInvite(true)}/>
+                        <Button title="Settings" icon="settings" onClick={() => setOpen(true)}/>
                     </div>
+
                 </div>
                 <User />
             </div>
+            
+
+
             <ModalSettings open={open} onClose={() => setOpen(false)} />
-            <ModalShare
-                open={openModalShare}
-                onClose={() => setOpenModalShare(false)}
-            />
-            <Modal
-                classWrapper="max-w-100"
-                open={openModalInvite}
-                onClose={() => setOpenModalInvite(false)}
-            >
+            <ModalShare open={openModalShare} onClose={() => setOpenModalShare(false)} />
+            <Modal classWrapper="max-w-100" open={openModalInvite} onClose={() => setOpenModalInvite(false)}>
                 <InvitePeople />
             </Modal>
         </>

@@ -76,7 +76,6 @@ const Settings = ({ open, onClose }: Props) => {
                             ))}
                         {activeId === 0 && <General />}
                         {activeId === 1 && <Notifications />}
-                        {activeId === 2 && <Speech />}
                         {activeId === 3 && <Theme />}
                         {activeId === 4 && <Security />}
                         {activeId === 5 && <DataControls />}

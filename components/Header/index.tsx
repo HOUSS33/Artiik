@@ -31,16 +31,7 @@ const Header = ({ onOpenSidebar, onToggleTools }: Props) => {
                     </div>
                 </div>
                 <div className="flex shrink-0 gap-1.5">
-                    <Button
-                        className="max-md:hidden"
-                        icon="flash"
-                        isBlack
-                        onClick={() => setOpen(true)}
-                    >
-                        Upgrade
-                    </Button>
                     <Button icon="help-circle" isStroke isCircle />
-                    <SpecialOffer />
                     <Button
                         icon="wrench"
                         isStroke
@@ -49,7 +40,7 @@ const Header = ({ onOpenSidebar, onToggleTools }: Props) => {
                     />
                 </div>
             </div>
-            <ModalPlan open={open} onClose={() => setOpen(false)} />
+            
         </>
     );
 };
