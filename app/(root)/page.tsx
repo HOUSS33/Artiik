@@ -1,13 +1,37 @@
 "use client";
 
-import Layout from "@/components/Layout";
 import Image from "@/components/Image";
 import PanelMessage from "@/components/PanelMessage";
-import Item from "./Item";
+import Layout from "@/components/Layout";
 
-import { items } from "./items";
+
+// import Item from "@/templates/HomePage/Item";
+//import { items } from "@/templates/HomePage/items";
+import { useRouter } from "next/navigation";
+import { items  } from "@/constant.ts";
+import Item from "@/components/Item";
+
+
 
 const HomePage = () => {
+    const router = useRouter();
+
+    const handleSendFromHome = async (message: string) => {
+
+        // call your API to create a new conversation
+        const res = await fetch("/api/conversations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+        });
+        const data = await res.json();
+
+        // redirect to the conversation page
+        router.push(`/conversation/${data.conversationId}`);
+  };
+
+
+
     return (
         <Layout>
             <div className="chat-wrapper">
@@ -24,7 +48,8 @@ const HomePage = () => {
                             Welcome Artiik AI
                         </div>
                         <div className="max-w-120 mx-auto text-p-xl text-sub-600 max-md:text-p-sm">
-                            Upload your dataset and pick a task — your AI Data Analyst will do the rest.
+                            Get Started by Script a task and chat can do the
+                            rest. Not sure where to start?
                         </div>
                     </div>
                     <div className="flex flex-wrap -mt-3 -mx-1.5">
@@ -33,7 +58,7 @@ const HomePage = () => {
                         ))}
                     </div>
                 </div>
-                <PanelMessage />
+                <PanelMessage  onSend={handleSendFromHome}/>
             </div>
         </Layout>
     );

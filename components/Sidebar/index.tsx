@@ -34,15 +34,9 @@ const Sidebar = ({ visible, onClose, onClickNewChat }: Props) => {
             >
                 <div className="grow overflow-auto scrollbar-none p-5">
                     <div className="flex items-center gap-2 mb-5 max-lg:pr-2 max-md:mb-3">
-                        <MyWorkspace />
-                        <button
-                            className="group hidden ml-4 max-lg:flex"
-                            onClick={onClose}
-                        >
-                            <Icon
-                                className="text-label-sm fill-strong-950 transition-colors group-hover:fill-blue-500"
-                                name="close"
-                            />
+                        
+                        <button className="group hidden ml-60 max-lg:flex" onClick={onClose}>
+                            <Icon className="text-label-sm fill-strong-950 transition-colors group-hover:fill-blue-500" name="close"/>
                         </button>
                     </div>
 
@@ -51,16 +45,29 @@ const Sidebar = ({ visible, onClose, onClickNewChat }: Props) => {
 
                     <div className="mb-auto">
                         <div className="mb-2 text-label-xs text-soft-400">
-                            Today
+                            Recent Chats
                         </div>
-                        <Link className="flex items-center gap-2 h-10 mb-2 px-3 rounded-xl bg-weak-50 dark:shadow-[0_0_0.1875rem_0_rgba(255,255,255,0.16)]" href="/write-copy">
-                            <Icon className="fill-strong-950" name="document" />
-                            <div className="text-label-sm"> mental health problems</div>
+                        <Link className="flex items-center gap-2 h-10 mb-2 px-3 rounded-xl bg-weak-50 dark:shadow-[0_0_0.1875rem_0_rgba(255,255,255,0.16)]" href="/conversation/3453">
+                            <Icon className="fill-strong-950" name="chat" />
+                            <div className="text-label-sm"> Analyse this folder...</div>
                         </Link>
+                        <Link className="flex items-center gap-2 h-10 mb-2 px-3 rounded-xl bg-weak-50 dark:shadow-[0_0_0.1875rem_0_rgba(255,255,255,0.16)]" href="/conversation/3453">
+                            <Icon className="fill-strong-950" name="chat" />
+                            <div className="text-label-sm"> show me a visualization... </div>
+                        </Link>
+                        <Link className="flex items-center gap-2 h-10 mb-2 px-3 rounded-xl bg-weak-50 dark:shadow-[0_0_0.1875rem_0_rgba(255,255,255,0.16)]" href="/conversation/3453">
+                            <Icon className="fill-strong-950" name="chat" />
+                            <div className="text-label-sm"> show me a visualization... </div>
+                        </Link>
+
+                    
+
                         <Folders />
-                        <NavLink href="/documents" title="Documents" icon="document"/>
+                        <NavLink href="/mydocuments" title="Documents" icon="document"/>
                         <NavLink href="/history" title="History" icon="history"/>
                     </div>
+
+
 
                     <div className="mt-7 max-md:mt-4">
                         <Button title="Shared With Me" icon="share" onClick={() => setOpenModalShare(true)}/>
@@ -69,7 +76,7 @@ const Sidebar = ({ visible, onClose, onClickNewChat }: Props) => {
                     </div>
 
                 </div>
-                <User />
+                <User onClick={() => setOpen(true)}/>
             </div>
             
 

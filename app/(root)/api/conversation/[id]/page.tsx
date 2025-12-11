@@ -10,9 +10,9 @@ import { useState, useEffect, useRef } from "react";
 import { fakeMessages } from "@/constant.ts";
 
 
-type Message = {
+export type Message = {
   id: number;                                                                 // Defines a Message object, Helps TypeScript catch errors and ensures your messages array only contains valid message objects.
-  sender: string;                                                  // role: either "user" (you) or "assistant" (AI).
+  sender: "human" | "ai";                                                  // role: either "user" (you) or "assistant" (AI).
   content: string;                                                             // the text content of the message
 };
 
@@ -42,6 +42,12 @@ const WriteCopyPage = () => {
             const res = await fetch(`/api/conversations/${conversationId}/messages`);
             const data = await res.json(); // assume [{role, content}, ...]
             setMessages(data);
+
+            // If the latest message is from user and no AI response exists
+            const lastMsg = data[data.length - 1];
+            if (lastMsg && lastMsg.sender === "human") {
+            handleSendInConversation(lastMsg.content);
+            }
           } catch (err) {
             console.error("Error fetching messages:", err);
           }
@@ -59,15 +65,16 @@ const WriteCopyPage = () => {
     
         try {
             /*
-          // 1️⃣ Optimistically update UI with user message
-          setMessages(prev => [...prev, { role: "user", content: userMessage }]);      // Adds the user's message immediately to the UI before saving it in DB or getting AI response. Makes the chat feel instant.
-    
-          // 2️⃣ Save user message in DB
+          // 1️⃣  Save user message in DB
           await fetch(`/api/conversations/${conversationId}/messages`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ role: "user", content: userMessage }),
           });
+
+           // 2️⃣ Optimistically update UI with user message
+          setMessages(prev => [...prev, { role: "user", content: userMessage }]);      // Adds the user's message immediately to the UI before saving it in DB or getting AI response. Makes the chat feel instant.
+    
     
           // 3️⃣ Call GPT API
           const gptRes = await fetch("/api/gpt", {

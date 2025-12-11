@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import { SessionProvider } from "next-auth/react";
 import Providers from "./providers";
 import "./globals.css";
+import { auth } from "@/auth";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -42,21 +44,20 @@ const interDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-    title: "NeuraTalk",
-    description: "NeuraTalk: Coded AI Chat Companion",
+    title: "Artiik",
+    description: "Data Analyst Agent Assistant Powered by AI",
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+
+
+export  default async function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+    
+    const session = await auth()
     return (
-        <html
-            className="text-[calc(0.7rem+0.35vw)] max-[2300px]:text-[calc(0.7rem+0.32vw)] max-[2150px]:text-[calc(0.7rem+0.28vw)] max-4xl:text-[1rem]"
-            lang="en"
-            suppressHydrationWarning
-        >
+        <html className="text-[calc(0.7rem+0.35vw)] max-[2300px]:text-[calc(0.7rem+0.32vw)] max-[2150px]:text-[calc(0.7rem+0.28vw)] max-4xl:text-[1rem]" lang="en" suppressHydrationWarning >
+
+            {/* Meta tags for SEO and social media sharing */}
+            {/*Exactly 😎. The <head> is basically for SEO, social media previews, and browser info. Stuff like <title> and <meta> tags tell Google, Twitter, Facebook, etc., what your page is about. Without it, your page works, but links shared on socials won’t look good and search engines won’t know your page properly. */}
             <head>
                 {/* Description no longer than 155 characters */}
                 <meta
@@ -148,11 +149,18 @@ export default function RootLayout({
                     content="A powerful coded AI chat experience"
                 />
             </head>
-            <body
-                className={`${satoshi.variable} ${inter.variable} ${interDisplay.variable} bg-weak-50 font-satoshi text-p-sm text-strong-950 antialiased`}
-            >
-                <Providers>{children}</Providers>
-            </body>
+            
+            <SessionProvider session={session}>
+
+                <body className={`${satoshi.variable} ${inter.variable} ${interDisplay.variable} bg-weak-50 font-satoshi text-p-sm text-strong-950 antialiased`} >
+                    
+                    <Providers>
+                        {children}
+                    </Providers>
+                    
+                </body>
+
+            </SessionProvider>
         </html>
     );
 }

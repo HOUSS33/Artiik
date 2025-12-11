@@ -22,7 +22,7 @@ const ModalShare = ({ open, onClose }: Props) => {
 
     return (
         <Modal classWrapper="max-w-138" open={open} onClose={onClose}>
-            <Images />
+            
             <div className="mb-2 text-center text-label-xl">Share Board</div>
             <div className="mb-4.5 text-center text-label-md text-sub-600 max-md:text-label-sm">
                 People with link will be able to view conversations and ideas in
